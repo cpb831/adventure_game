@@ -11,55 +11,44 @@ place_description_dictionary = {
 
 print("Welcome to a Northwestern adventure game.\nGo Cats!\nYou're at the Arch.\nYour destination:"
       " the Lakefill.")
+position = ""
+
+
+def update_position(index):
+    position = str(index)
+    print("You are at " + place_description_dictionary.get(position)[0] + ".")
+    print(place_description_dictionary.get(position)[1])
+    if position == "6":
+        exit()
+
+def move(direction, amount):
+    dirs[direction] += amount
+    new_location = dirs
+    if new_location in locations:
+        update_position(locations.index(dirs))
+    else:
+        moveWasInvalid(direction, -amount)
+
+def moveWasInvalid(direction, amount):
+    dirs[direction] += amount
+    new_location = dirs
+    print("Not today. Choose a different direction: ")
+            
 while True:
-    indicator = ""
+    
     var = input("Which direction do you want to go: n, s, e, or w?: ")
     if var == ("n"):
-        dirs[0] += 1
-        new_location = dirs
-        if new_location in locations:
-            indicator = str(locations.index(dirs))
-            print("You are at " + place_description_dictionary.get(indicator)[0] + ".")
-            print(place_description_dictionary.get(indicator)[1])
-        else:
-            dirs[0] -= 1
-            new_location = dirs
-            print("Not today. Choose a different direction: ")
+        move(0, 1)
+
     elif var == "s":
-        dirs[0] -= 1
-        new_location = dirs
-        if new_location in locations:
-            indicator = str(locations.index(dirs))
-            print("You are at " + place_description_dictionary.get(indicator)[0] + ".")
-            print(place_description_dictionary.get(indicator)[1])
-        else:
-            dirs[0] += 1
-            new_location = dirs
-            print("Not today. Choose a different direction: ")
+        move(0, -1)
+            
     elif var == "e":
-        dirs[1] += 1
-        new_location = dirs
-        if new_location in locations:
-            indicator = str(locations.index(dirs))
-            print("You are at " + place_description_dictionary.get(indicator)[0] + ".")
-            print(place_description_dictionary.get(indicator)[1])
-            if (new_location == locations[6]):
-                break
-        else:
-            dirs[1] -= 1
-            new_location = dirs
-            print("Not today. Choose a different direction: ")
+        move(1, 1)
+            
     elif var == "w":
-        dirs[1] -= 1
-        new_location = dirs
-        if new_location in locations:
-            indicator = str(locations.index(dirs))
-            print("You are at " + place_description_dictionary.get(indicator)[0] + ".")
-            print(place_description_dictionary.get(indicator)[1])
-        else:
-            dirs[1] += 1
-            new_location = dirs
-            print("Not today. Choose a different direction: ")
+        move(1, -1)
+        
     else:
       print("Invalid entry.")
       continue
