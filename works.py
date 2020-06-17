@@ -1,7 +1,6 @@
 from variables_1 import *
 def overall(str_1):
-    start_game = True
-    while start_game == True:
+    while str_1 != "lf":
         if str_1 == "l":
             str_1 = input(place_description[2] + "\n\n\nThat's enough studying for now.\n"
                                                "Type \"u\" to go back to University Hall: ")
@@ -17,10 +16,10 @@ def overall(str_1):
             str_1 = input(place_description[4] + "\n" + "Type \"u\" to go to University Hall, or"
                                             " \"m\" to go to the Music Building, or"
                                             " \"lf\" to go the Lakefill: ")
-        if str_1 == "lf":
-            print(place_description[6])
-            break
-
+    else:
+        start_game = False
+    print(place_description[6])
+start_game = True
 def begin():
     print("Welcome to Northwestern.\nGo Cats!\nYou're at the Arch.")
     input("Type any key to walk to University Hall: ")
