@@ -1,27 +1,65 @@
-from variables_1 import *
-def overall(str_1):
-    while str_1 != "lf":
-        if str_1 == "l":
-            str_1 = input(place_description[2] + "\n\n\nThat's enough studying for now.\n"
-                                               "Type \"u\" to go back to University Hall: ")
-        if str_1 == "k":
-            str_1 = input(place_description[3] + "\n" + "Type \"u\" to go to University Hall or \"m\" to go to the Music Building: ")
-        if str_1 == "u":
-            str_1 = input(place_description[1] + "\n" + "Type \"l\" to go to the Library, or"
-                                                " \"k\" to go to Kresge, or"
-                                                " \"n\" to hang at Norris: ")
-        if str_1 == "m":
-            str_1 = input(place_description[5] + "\n" + "Type \"k\" to go to Kresge or \"n\" to hang at Norris: ")
-        if str_1 == "n":
-            str_1 = input(place_description[4] + "\n" + "Type \"u\" to go to University Hall, or"
-                                            " \"m\" to go to the Music Building, or"
-                                            " \"lf\" to go the Lakefill: ")
+dirs = [0,0]
+locations = [[0,0], [0,1], [1,1], [-1,1], [0,2], [-1,2], [0,3]]
+place_description_dictionary = {
+    "0": ["the Arch", "Where it all begins..."],
+    "1": ["University Hall", "So beautiful, n'est-ce pas?"],
+    "2": ["the Library", "Study, study, study!"],
+    "3": ["Kresge", "What can you say?  It's Kresge"],
+    "4": ["Norris", "BONUS BUCKS!"],
+    "5": ["the Music Building", "Time to practice!",],
+    "6": ["the Lakefill", "Stick your toes in Lake Michigan.  You made it!"]}
+
+print("Welcome to a Northwestern adventure game.\nGo Cats!\nYou're at the Arch.\nYour destination:"
+      " the Lakefill.")
+while True:
+    indicator = ""
+    var = input("Which direction do you want to go: n, s, e, or w?: ")
+    if var == ("n"):
+        dirs[0] += 1
+        new_location = dirs
+        if new_location in locations:
+            indicator = str(locations.index(dirs))
+            print("You are at " + place_description_dictionary.get(indicator)[0] + ".")
+            print(place_description_dictionary.get(indicator)[1])
+        else:
+            dirs[0] -= 1
+            new_location = dirs
+            print("Not today. Choose a different direction: ")
+    elif var == "s":
+        dirs[0] -= 1
+        new_location = dirs
+        if new_location in locations:
+            indicator = str(locations.index(dirs))
+            print("You are at " + place_description_dictionary.get(indicator)[0] + ".")
+            print(place_description_dictionary.get(indicator)[1])
+        else:
+            dirs[0] += 1
+            new_location = dirs
+            print("Not today. Choose a different direction: ")
+    elif var == "e":
+        dirs[1] += 1
+        new_location = dirs
+        if new_location in locations:
+            indicator = str(locations.index(dirs))
+            print("You are at " + place_description_dictionary.get(indicator)[0] + ".")
+            print(place_description_dictionary.get(indicator)[1])
+            if (new_location == locations[6]):
+                break
+        else:
+            dirs[1] -= 1
+            new_location = dirs
+            print("Not today. Choose a different direction: ")
+    elif var == "w":
+        dirs[1] -= 1
+        new_location = dirs
+        if new_location in locations:
+            indicator = str(locations.index(dirs))
+            print("You are at " + place_description_dictionary.get(indicator)[0] + ".")
+            print(place_description_dictionary.get(indicator)[1])
+        else:
+            dirs[1] += 1
+            new_location = dirs
+            print("Not today. Choose a different direction: ")
     else:
-        start_game = False
-    print(place_description[6])
-start_game = True
-def begin():
-    print("Welcome to Northwestern.\nGo Cats!\nYou're at the Arch.")
-    input("Type any key to walk to University Hall: ")
-begin()
-overall("u")
+      print("Invalid entry.")
+      continue
